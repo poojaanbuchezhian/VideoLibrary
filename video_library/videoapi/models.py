@@ -9,6 +9,16 @@ class Video(models.Model):
   subcategory = models.TextField(max_length=50)
   author = models.TextField(max_length=50)
 
+  def rating_average(self):
+    sum=0
+    ratings = Rating.objects.filter(video=self)
+    for rating in ratings:
+      sum = sum + rating.stars
+    if len(ratings) > 0:
+      return sum/len(ratings)
+    else:
+      return 0
+
 class Rating(models.Model):
   video = models.ForeignKey(Video, on_delete=models.CASCADE)
   user = models.ForeignKey (User, on_delete=models.CASCADE)

@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'videoapi',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
+
 ]
 
 MIDDLEWARE = [
@@ -70,7 +72,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'video_library.wsgi.application'
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': {
+        'rest_framework.permissions.IsAuthenticated'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
