@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Video
-        fields=('id','title','description','rating_average','url','category','subcategory','author')
+        fields=('id','title','description','rating_average','url','category','subcategory','author','comments_list')
         extra_kwargs={'url': {'required':True}}
 class RatingSerializer(serializers.ModelSerializer):
   class Meta:

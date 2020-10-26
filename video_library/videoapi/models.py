@@ -18,6 +18,13 @@ class Video(models.Model):
       return sum/len(ratings)
     else:
       return 0
+  def comments_list(self):
+    allcomments = Rating.objects.filter(video=self)
+    listallcomments = []
+    for comment in allcomments:
+      print(comment.comments)
+      listallcomments.append(comment.comments)
+    return listallcomments
 
 class Rating(models.Model):
   video = models.ForeignKey(Video, on_delete=models.CASCADE)
