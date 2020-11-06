@@ -19,7 +19,7 @@
           </p>
       </div>
       <div class="col-md-6">
-        <VideoDetails  v-bind:videodetail="videodetail"/>
+        <VideoDetails  v-bind:videodetail="videodetail" v-on:updated="updateVideos" v-on:deleted="updateVideos"/>
       </div>
 
     </div>
@@ -59,6 +59,14 @@ export default {
    createdNew() {
       this.createNew = !this.createNew;
     },
+    updateVideos(video) {
+     this.timer = setTimeout(() => {
+     axios
+     .get("http://127.0.0.1:8000/api/videos/")
+     .then(res => (this.videos = res.data))
+     .catch(err => console.log(err));
+       }, 600);
+   }
   },
   created() {
     this.getVideos();
